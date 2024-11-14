@@ -11,6 +11,7 @@ function App() {
   const [showError, setShowError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
   const [finalMessage, setFinalMessage] = useState(false);
+  const [formScreen, setFormScreen] = useState(true);
   
 
   const handleSubmit = (event) => {
@@ -23,12 +24,16 @@ function App() {
       setShowPasswordError(true);
     } else {
       setFinalMessage(true);
+      setFormScreen(false);
 
     }
   };
   
   return (
     <>
+        {formScreen && (
+          <div>
+
         <h1>Create account</h1>
 
        <form onSubmit={handleSubmit} className="form">
@@ -50,6 +55,10 @@ function App() {
           }}/>
         <button type="submit">Register</button>
       </form>
+
+      </div>
+
+      )}
 
       {showError && (
         <p style={{ color: "red" }}>
