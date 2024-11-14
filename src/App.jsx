@@ -1,5 +1,8 @@
 import { useState } from "react";
+import Form from "./assets/components/Form";
+import StepTwo from "./assets/components/stepTwo";
 import Footer from "./assets/components/Footer";
+
 
 import './App.css'
 
@@ -29,61 +32,40 @@ function App() {
   return (
     <>
         {formScreen ? (
-        <div>
-
-        <h1>Create account</h1>
-
-       <form onSubmit={handleSubmit} className="form">
-          <span>Name</span>
-        <input type="text" placeholder="Jean Dupont" name="username" value={username} onChange={(event) => {
-            setUsername(event.target.value);
-          }}/>
-          <span>Email</span>
-        <input type="email" placeholder="jeandupont@lereacteur.io" name="email" value={email} onChange={(event) => {
-            setEmail(event.target.value);
-          }}/>
-          <span>Password</span>
-        <input className={showPasswordError ? "redBorder" : ""} type="password" placeholder="azerty" name="password" value={password} onChange={(event) => {
-            setPassword(event.target.value);
-          }}/>
-          <span>Confirm your password</span>
-        <input className={showPasswordError ? "redBorder" : ""} type="password" placeholder="azerty" name="passwordCheck" value={passwordCheck} onChange={(event) => {
-            setPasswordCheck(event.target.value);
-          }}/>
-        <button type="submit">Register</button>
-      </form>
-
-      </div>
+          <Form 
+          handleSubmit={handleSubmit}
+          username={username}
+          email={email} 
+          password={password} 
+          passwordCheck={passwordCheck} 
+          setUsername={setUsername}
+          setEmail={setEmail} 
+          setPassword={setPassword} 
+          setPasswordCheck={setPasswordCheck}/>
 
       ) : (
 
-        <div className="result">
-          <div>
-        <h1>Results</h1>
-          <div className="resultContent">
-            <div>name : {username}</div>
-            <div>email : {email}</div>
-            <div>password : {password}</div>
-          </div>
-          <button onClick={() => {setFormScreen(true)}}>Edit your informations</button>
-          </div>
-        </div>
+          <StepTwo  
+          username={username} 
+          email={email} 
+          password={password} 
+          setFormScreen={setFormScreen}/>
+
       )}
 
-
       {showError && (
-        <p style={{ color: "red" }}>
+        <p style={{ color: "red", textAlign: "center"}}>
           Votre mot de passe doit faire plus de 8 caractères !
         </p>
       )}
       {showPasswordError && (
-        <p style={{ color: "red" }}>
+        <p style={{ color: "red", textAlign: "center"}}>
           Les mots de passe ne sont pas identiques !
         </p>
       )}
 
-
       <Footer/>
+
     </>
   )
 }
