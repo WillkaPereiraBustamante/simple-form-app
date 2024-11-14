@@ -10,7 +10,6 @@ function App() {
   const [passwordCheck, setPasswordCheck] = useState("");
   const [showError, setShowError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
-  // const [finalMessage, setFinalMessage] = useState(false);
   const [formScreen, setFormScreen] = useState(true);
   
 
@@ -23,16 +22,14 @@ function App() {
     } else if (password !== passwordCheck) {
       setShowPasswordError(true);
     } else {
-      // setFinalMessage(true);
       setFormScreen(false);
-
     }
   };
   
   return (
     <>
         {formScreen ? (
-          <div>
+        <div>
 
         <h1>Create account</h1>
 
@@ -59,6 +56,7 @@ function App() {
       </div>
 
       ) : (
+
         <div className="result">
           <div>
         <h1>Results</h1>
@@ -67,10 +65,11 @@ function App() {
             <div>email : {email}</div>
             <div>password : {password}</div>
           </div>
-          <button>Edit your informations</button>
+          <button onClick={() => {setFormScreen(true)}}>Edit your informations</button>
           </div>
         </div>
       )}
+
 
       {showError && (
         <p style={{ color: "red" }}>
@@ -82,19 +81,7 @@ function App() {
           Les mots de passe ne sont pas identiques !
         </p>
       )}
-      {/* {finalMessage && (
-        <div className="result">
-          <div>
-        <h1>Results</h1>
-          <div className="resultContent">
-            <div>name : {username}</div>
-            <div>email : {email}</div>
-            <div>password : {password}</div>
-          </div>
-          <button>Edit your informations</button>
-          </div>
-        </div>
-      )} */}
+
 
       <Footer/>
     </>
