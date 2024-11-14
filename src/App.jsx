@@ -10,7 +10,7 @@ function App() {
   const [passwordCheck, setPasswordCheck] = useState("");
   const [showError, setShowError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
-  const [finalMessage, setFinalMessage] = useState(false);
+  // const [finalMessage, setFinalMessage] = useState(false);
   const [formScreen, setFormScreen] = useState(true);
   
 
@@ -23,7 +23,7 @@ function App() {
     } else if (password !== passwordCheck) {
       setShowPasswordError(true);
     } else {
-      setFinalMessage(true);
+      // setFinalMessage(true);
       setFormScreen(false);
 
     }
@@ -31,7 +31,7 @@ function App() {
   
   return (
     <>
-        {formScreen && (
+        {formScreen ? (
           <div>
 
         <h1>Create account</h1>
@@ -58,19 +58,7 @@ function App() {
 
       </div>
 
-      )}
-
-      {showError && (
-        <p style={{ color: "red" }}>
-          Votre mot de passe doit faire plus de 8 caractères !
-        </p>
-      )}
-      {showPasswordError && (
-        <p style={{ color: "red" }}>
-          Les mots de passe ne sont pas identiques !
-        </p>
-      )}
-      {finalMessage && (
+      ) : (
         <div className="result">
           <div>
         <h1>Results</h1>
@@ -83,6 +71,30 @@ function App() {
           </div>
         </div>
       )}
+
+      {showError && (
+        <p style={{ color: "red" }}>
+          Votre mot de passe doit faire plus de 8 caractères !
+        </p>
+      )}
+      {showPasswordError && (
+        <p style={{ color: "red" }}>
+          Les mots de passe ne sont pas identiques !
+        </p>
+      )}
+      {/* {finalMessage && (
+        <div className="result">
+          <div>
+        <h1>Results</h1>
+          <div className="resultContent">
+            <div>name : {username}</div>
+            <div>email : {email}</div>
+            <div>password : {password}</div>
+          </div>
+          <button>Edit your informations</button>
+          </div>
+        </div>
+      )} */}
 
       <Footer/>
     </>
